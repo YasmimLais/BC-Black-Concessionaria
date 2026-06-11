@@ -1,0 +1,70 @@
+#ifndef TIPOS_H
+#define TIPOS_H
+
+/* ============================================================
+ *  Constantes
+ * ============================================================ */
+#define MAX_CLIENTES   100
+#define MAX_VEICULOS   200
+#define MAX_VENDAS     500
+#define MAX_ITENS      500
+
+/* ============================================================
+ *  Estruturas de dados
+ * ============================================================ */
+
+typedef struct {
+    int    id_cliente;
+    char   nome[100];
+    char   email[150];
+    char   telefone[16];
+    char   cpf[12];
+    char   endereco[200];
+    int    ativo;           /* 1 = ativo, 0 = removido */
+} Cliente;
+
+typedef struct {
+    int    id_veiculo;
+    char   tipo[11];        /* carro ou moto */
+    char   marca[50];
+    char   modelo[50];
+    int    ano;
+    double preco;
+    int    quilometragem;
+    char   status[20];      /* disponivel, vendido ou reservado */
+} Veiculo;
+
+typedef struct {
+    int    id_venda;
+    int    id_cliente;
+    int    id_veiculo;
+    char   data_venda[20];
+    double valor_total;
+    char   forma_pagamento[20];
+} Venda;
+
+typedef struct {
+    int id_item;
+    int id_venda;
+    int id_veiculo;
+} ItemVenda;
+
+/* ============================================================
+ *  Variaveis globais — definidas em main.c, usadas em todos
+ * ============================================================ */
+extern Cliente   clientes[MAX_CLIENTES];
+extern Veiculo   veiculos[MAX_VEICULOS];
+extern Venda     vendas[MAX_VENDAS];
+extern ItemVenda itens[MAX_ITENS];
+
+extern int total_clientes;
+extern int total_veiculos;
+extern int total_vendas;
+extern int total_itens;
+
+extern int proximo_id_cliente;
+extern int proximo_id_veiculo;
+extern int proximo_id_venda;
+extern int proximo_id_item;
+
+#endif /* TIPOS_H */
